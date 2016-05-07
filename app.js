@@ -43,16 +43,16 @@ function getPage(pageNum){
 }
 
 var i = 1;
-var totalPagesToScrape = 2000;
+var totalPagesToScrape = 20;
 
 var interval = setInterval(function(pageToScrape){
   getPage(i);
   console.log("ran the interval for the " + i + " time.");
   i = i + 1;
+  if (i == totalPagesToScrape){
+    clearInterval(interval);
+  }
 }, 1000, i);
-if (i == totalPagesToScrape){
-  clearInterval(interval);
-}
 
 // while (i < totalPagesToScrape){
 //   var thisPagePostTitles = getPage(i);
