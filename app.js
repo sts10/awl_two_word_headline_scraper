@@ -37,4 +37,5 @@ while (i < totalPagesToScrape){
 }
 
 
+console.log("bottom of the file");
 // console.log(allPostTitles);
