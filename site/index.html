@@ -32,11 +32,11 @@
         var postHeadline = newPost[0];
         var postUrl = newPost[1];
 
-        var wordArray = [postHeadline.split(' ')[0], postUrl];
         $('#first-word').text(postHeadline.split(' ')[0]);
         $('#first-link').attr('href', postUrl);
         $('#second-word').text(postHeadline.split(' ')[1]);
         $('#second-link').attr('href', postUrl);
+        document.title = postHeadline;
       }
 
       function newWord(data, wordNum){
