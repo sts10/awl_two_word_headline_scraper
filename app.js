@@ -22,14 +22,16 @@ function getPage(pageNum){
       var post_titles = [];
       var i = 0;
       while(i < posts.length){
-        var postTitle = posts[i]['children'][0]['data'];
-        if (postTitle.split(" ").length == 2 && postTitle.split(' ')[1].indexOf('"') == -1) {
-          var postURL = posts[i]['attribs']['href'];
-          var postInfo = [postTitle, postURL];
-          console.log(postInfo);
+        if (posts[i]['children'][0] && posts[i]['children'][0]['data']){
+          var postTitle = posts[i]['children'][0]['data'];
+          if (postTitle.split(" ").length == 2 && postTitle.split(' ')[1].indexOf('"') == -1) {
+            var postURL = posts[i]['attribs']['href'];
+            var postInfo = [postTitle, postURL];
+            console.log(postInfo);
 
-          writer.writeRecord(postInfo);
-          post_titles.push(postTitle);
+            writer.writeRecord(postInfo);
+            post_titles.push(postTitle);
+          }
         }
         i = i + 1;
       }
@@ -43,13 +45,11 @@ function getPage(pageNum){
 var i = 1;
 var totalPagesToScrape = 2000;
 
-// while (i < totalPagesToScrape){
-  var interval = setInterval(function(pageToScrape){
-    getPage(i);
-    console.log("ran the interval for the " + i + " time.");
-    i = i + 1;
-  }, 2000, i);
-// }
+var interval = setInterval(function(pageToScrape){
+  getPage(i);
+  console.log("ran the interval for the " + i + " time.");
+  i = i + 1;
+}, 1000, i);
 if (i == totalPagesToScrape){
   clearInterval(interval);
 }
@@ -60,5 +60,3 @@ if (i == totalPagesToScrape){
 // }
 
 
-console.log("bottom of the file");
-// console.log(allPostTitles);
