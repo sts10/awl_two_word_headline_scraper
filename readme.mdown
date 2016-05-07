@@ -1,0 +1,9 @@
+# Awl Two-Word Headline Scraper
+
+Uses Node.js to scrape [The Awl](http://www.theawl.com/) for headlines that are two words. 
+
+Note: `app.js` tries to skip posts about songs by not including headlines where the second word is in quotes.
+
+This is my first Node.js project! Woohoo!
+
+
