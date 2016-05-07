@@ -1,9 +1,9 @@
 var http = require('http');
 var cheerio = require('cheerio');
-var baseUrl = "http://www.theawl.com/page/";
 var csv = require('ya-csv'),  
 fs = require('fs');
 
+var baseUrl = "http://www.theawl.com/page/";
 var allPostTitles = [];
 
 var writer = csv.createCsvStreamWriter(fs.createWriteStream('test_headlines.csv', {'flags': 'a'}));  
@@ -43,7 +43,7 @@ function getPage(pageNum){
 }
 
 var i = 1;
-var totalPagesToScrape = 20;
+var totalPagesToScrape = 2705;
 
 var interval = setInterval(function(pageToScrape){
   getPage(i);
@@ -53,10 +53,5 @@ var interval = setInterval(function(pageToScrape){
     clearInterval(interval);
   }
 }, 1000, i);
-
-// while (i < totalPagesToScrape){
-//   var thisPagePostTitles = getPage(i);
-//   i = i + 1;
-// }
 
 
