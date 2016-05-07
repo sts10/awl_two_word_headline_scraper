@@ -18,8 +18,6 @@ function getPage(pageNum){
     response.on('end', function(){
       var page = cheerio.load(body);
       var posts = page("div.reverse-chron__post h2 a");
-      console.log("childen:");
-      console.log(posts[1]["attribs"]['href']);
 
       var post_titles = [];
       var i = 0;
@@ -28,6 +26,7 @@ function getPage(pageNum){
         if (postTitle.split(" ").length == 2 && postTitle.split(' ')[1].indexOf('"') == -1) {
           var postURL = posts[i]['attribs']['href'];
           var postInfo = [postTitle, postURL];
+          console.log(postInfo);
 
           writer.writeRecord(postInfo);
           post_titles.push(postTitle);
@@ -43,10 +42,22 @@ function getPage(pageNum){
 
 var i = 1;
 var totalPagesToScrape = 2000;
-while (i < totalPagesToScrape){
-  var thisPagePostTitles = getPage(i);
-  i = i + 1;
+
+// while (i < totalPagesToScrape){
+  var interval = setInterval(function(pageToScrape){
+    getPage(i);
+    console.log("ran the interval for the " + i + " time.");
+    i = i + 1;
+  }, 2000, i);
+// }
+if (i == totalPagesToScrape){
+  clearInterval(interval);
 }
+
+// while (i < totalPagesToScrape){
+//   var thisPagePostTitles = getPage(i);
+//   i = i + 1;
+// }
 
 
 console.log("bottom of the file");
